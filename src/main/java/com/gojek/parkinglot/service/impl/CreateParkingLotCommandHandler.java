@@ -23,6 +23,7 @@ public class CreateParkingLotCommandHandler implements CommandHandler {
 
     @Override
     public String execute(String[] args) {
+        log.info("Executing create parking lot command.");
         int noOfCarSlots = Integer.parseInt(args[1]);
         log.info("Creating parking lot with {} car slots.", noOfCarSlots);
         parkingLotService.createParkingSlots(noOfCarSlots);

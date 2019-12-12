@@ -30,4 +30,12 @@ public interface ParkingLotService {
      * @return returns the first available slot
      */
     Slot getNearestSlot(VehicleType vehicleType);
+
+    /**
+     * Frees the given slot id
+     * @param type the type of vehicle parked
+     * @param slotId the slot id
+     * @return returns the freed vehicle
+     */
+    Vehicle free(VehicleType type, String slotId);
 }

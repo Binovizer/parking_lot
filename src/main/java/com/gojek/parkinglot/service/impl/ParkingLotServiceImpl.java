@@ -52,6 +52,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public Slot park(Vehicle vehicle) {
+        log.info("Parking vehicle to nearest slot.");
         Slot nearestSlot = getNearestSlot(vehicle.getType());
         nearestSlot.park(vehicle);
         return nearestSlot;
@@ -59,8 +60,20 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public Slot getNearestSlot(VehicleType vehicleType) {
+        log.info("Getting nearest slot for the vehicle.");
         Optional<Slot> nearestEmptySlot = slots.get(vehicleType).stream().filter(Slot::isEmpty).findFirst();
         return nearestEmptySlot.orElseThrow(
                 () -> new ParkingLotException(ErrorCodes.PARKING_FULL));
+    }
+
+    @Override
+    public Vehicle free(VehicleType type, String slotId) {
+        log.info("Emptying the given slot with id");
+        List<Slot> slots = this.slots.get(type);
+        Optional<Slot> optionalSlot =
+                slots.stream().filter(slot -> slot.getId().equalsIgnoreCase(slotId)).findFirst();
+        Slot slot = optionalSlot.orElseThrow(() -> new ParkingLotException(ErrorCodes.SLOT_NOT_FOUND));
+        Vehicle free = slot.empty();
+        return free;
     }
 }
