@@ -76,4 +76,24 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         Vehicle free = slot.empty();
         return free;
     }
+
+    @Override
+    public void printStatus(VehicleType vehicleType) {
+        System.out.println("Slot No.\tRegistration No\tColour");
+        printStatusOfType(vehicleType);
+    }
+
+
+
+    private void printStatusOfType(VehicleType type) {
+        List<Slot> slotsOfType = this.slots.get(type);
+        slotsOfType.forEach(slot -> {
+            Vehicle parkedVehicle = slot.getParkedVehicle();
+            if(Objects.nonNull(parkedVehicle)) {
+                String slotPrint = String.format("%s\t%s\t%s",
+                        slot.getId(), parkedVehicle.getRegistrationNumber(), parkedVehicle.getColor());
+                System.out.println(slotPrint);
+            }
+        });
+    }
 }

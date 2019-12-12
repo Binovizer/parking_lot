@@ -38,4 +38,10 @@ public interface ParkingLotService {
      * @return returns the freed vehicle
      */
     Vehicle free(VehicleType type, String slotId);
+
+    /**
+     * Prints the status of given vehicle vehicleType
+     * @param vehicleType the vehicle vehicleType
+     */
+    void printStatus(VehicleType vehicleType);
 }
