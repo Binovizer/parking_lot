@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ParkCommandHandler implements CommandHandler {
 
-    private static final Logger log = LoggerFactory.getLogger(ParkingLotApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(ParkCommandHandler.class);
 
     private ParkingLotService parkingLotService;
 
@@ -27,7 +27,7 @@ public class ParkCommandHandler implements CommandHandler {
 
     @Override
     public String execute(String[] args) {
-        log.info("Executing park command.");
+        log.info("Executing '{}' command.", args[0]);
         String response = "Sorry, parking lot is full";
         String registrationNumber = args[1];
         String color = args[2];

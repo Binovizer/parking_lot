@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  */
 public class LeaveCommandHandler implements CommandHandler {
 
-    private static final Logger log = LoggerFactory.getLogger(ParkingLotApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(LeaveCommandHandler.class);
 
     private ParkingLotService parkingLotService;
 
@@ -25,7 +25,7 @@ public class LeaveCommandHandler implements CommandHandler {
 
     @Override
     public String execute(String[] args) {
-        log.info("Executing leave command.");
+        log.info("Executing '{}' command.", args[0]);
         String respnose = "Not found.";
         String slotId = args[1];
         log.info("Emptying the slot with id : {}", slotId);

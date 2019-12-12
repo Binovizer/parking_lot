@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * The type ParkingLotServiceImpl
@@ -19,7 +20,7 @@ import java.util.*;
  */
 public class ParkingLotServiceImpl implements ParkingLotService {
 
-    private static final Logger log = LoggerFactory.getLogger(ParkingLotApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(ParkingLotServiceImpl.class);
 
     // Singleton Pattern
     private static ParkingLotServiceImpl parkingLot = null;
@@ -83,6 +84,22 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         printStatusOfType(vehicleType);
     }
 
+    @Override
+    public List<Vehicle> searchVehicle(VehicleType vehicleType, String color) {
+        List<Slot> filteredSlots = searchSlots(vehicleType, color);
+        List<Vehicle> filteredVehicles = filteredSlots.stream()
+                .map(Slot::getParkedVehicle)
+                .collect(Collectors.toList());
+        return filteredVehicles;
+    }
+
+    public List<Slot> searchSlots(VehicleType vehicleType, String color) {
+        List<Slot> slots = this.slots.get(vehicleType);
+        List<Slot> filteredSlots = slots.stream()
+                .filter(slot -> slot.getParkedVehicle().getColor().equalsIgnoreCase(color))
+                .collect(Collectors.toList());
+        return filteredSlots;
+    }
 
 
     private void printStatusOfType(VehicleType type) {

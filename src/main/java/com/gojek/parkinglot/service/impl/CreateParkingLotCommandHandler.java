@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  */
 public class CreateParkingLotCommandHandler implements CommandHandler {
 
-    private static final Logger log = LoggerFactory.getLogger(ParkingLotApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(CreateParkingLotCommandHandler.class);
 
     private ParkingLotService parkingLotService;
 
@@ -23,7 +23,7 @@ public class CreateParkingLotCommandHandler implements CommandHandler {
 
     @Override
     public String execute(String[] args) {
-        log.info("Executing create parking lot command.");
+        log.info("Executing '{}' command.", args[0]);
         int noOfCarSlots = Integer.parseInt(args[1]);
         log.info("Creating parking lot with {} car slots.", noOfCarSlots);
         parkingLotService.createParkingSlots(noOfCarSlots);

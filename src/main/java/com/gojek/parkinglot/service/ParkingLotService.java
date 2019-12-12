@@ -4,6 +4,8 @@ import com.gojek.parkinglot.dto.Slot;
 import com.gojek.parkinglot.dto.Vehicle;
 import com.gojek.parkinglot.dto.VehicleType;
 
+import java.util.List;
+
 /**
  * The type ParkingLotService
  *
@@ -44,4 +46,20 @@ public interface ParkingLotService {
      * @param vehicleType the vehicle vehicleType
      */
     void printStatus(VehicleType vehicleType);
+
+    /**
+     * Searches the vehicles of given type and color
+     * @param vehicleType the vehicle type to be searched
+     * @param color the color of vehicle
+     * @return returns the list of vehicles
+     */
+    List<Vehicle> searchVehicle(VehicleType vehicleType, String color);
+
+    /**
+     * Searches the slots containing vehicle of given type and color
+     * @param vehicleType the vehicle type
+     * @param color the color
+     * @return returns the list of slots
+     */
+    List<Slot> searchSlots(VehicleType vehicleType, String color);
 }
