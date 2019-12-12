@@ -16,6 +16,7 @@ public class ParkingLotApplication {
 
     public static void main(String[] args) {
         log.info("Arguments passed to program : {}", Arrays.toString(args));
+        Processor.process(args);
     }
 
 }
