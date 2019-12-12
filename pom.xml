@@ -9,17 +9,27 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <log4j.version>2.8.2</log4j.version>
+        <log4j-api.version>2.12.1</log4j-api.version>
+        <log4j-core.version>2.12.1</log4j-core.version>
+        <log4j-slf4j-impl.version>2.12.1</log4j-slf4j-impl.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
-            <type>pom</type>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j-api.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j-slf4j-impl.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

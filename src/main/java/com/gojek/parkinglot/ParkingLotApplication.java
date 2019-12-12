@@ -1,5 +1,8 @@
 package com.gojek.parkinglot;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 
 /**
@@ -9,8 +12,10 @@ import java.util.Arrays;
  */
 public class ParkingLotApplication {
 
+    private static final Logger log = LoggerFactory.getLogger(ParkingLotApplication.class);
+
     public static void main(String[] args) {
-        System.out.println("args = " + Arrays.toString(args));
+        log.info("Arguments passed to program : {}", Arrays.toString(args));
     }
 
 }
