@@ -1,5 +1,9 @@
 package com.gojek.parkinglot.service;
 
+import com.gojek.parkinglot.dto.Slot;
+import com.gojek.parkinglot.dto.Vehicle;
+import com.gojek.parkinglot.dto.VehicleType;
+
 /**
  * The type ParkingLotService
  *
@@ -12,4 +16,18 @@ public interface ParkingLotService {
      * @param noOfCarSlots the no of car slots
      */
     void createParkingSlots(int noOfCarSlots);
+
+    /**
+     * Parks the vehicle
+     * @param vehicle the vehicle to be parked
+     * @return returns the slot of parked vehicle
+     */
+    Slot park(Vehicle vehicle);
+
+    /**
+     * Gets the nearest available slot for the vehicle
+     * @param vehicleType the type of vehicle
+     * @return returns the first available slot
+     */
+    Slot getNearestSlot(VehicleType vehicleType);
 }

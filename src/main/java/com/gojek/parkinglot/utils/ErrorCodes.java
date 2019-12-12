@@ -8,6 +8,7 @@ package com.gojek.parkinglot.utils;
 public enum ErrorCodes {
 
     HANDLER_NOT_FOUND("HANDLER_NOT_FOUND", "No handler is supported for this command."),
+    PARKING_FULL("PARKING_FULL", "Parking is full."),
     SLOT_NOT_AVAILABLE("SLOT_NOT_AVAILABLE", "Slot is already occupied.");
 
     private final String errorCode;

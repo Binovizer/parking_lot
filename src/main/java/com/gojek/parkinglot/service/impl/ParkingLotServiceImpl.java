@@ -2,15 +2,15 @@ package com.gojek.parkinglot.service.impl;
 
 import com.gojek.parkinglot.ParkingLotApplication;
 import com.gojek.parkinglot.dto.Slot;
+import com.gojek.parkinglot.dto.Vehicle;
 import com.gojek.parkinglot.dto.VehicleType;
+import com.gojek.parkinglot.exception.ParkingLotException;
 import com.gojek.parkinglot.service.ParkingLotService;
+import com.gojek.parkinglot.utils.ErrorCodes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The type ParkingLotServiceImpl
@@ -48,5 +48,19 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             typeOfSlots.add(slot);
         }
         slots.putIfAbsent(vehicleType, typeOfSlots);
+    }
+
+    @Override
+    public Slot park(Vehicle vehicle) {
+        Slot nearestSlot = getNearestSlot(vehicle.getType());
+        nearestSlot.park(vehicle);
+        return nearestSlot;
+    }
+
+    @Override
+    public Slot getNearestSlot(VehicleType vehicleType) {
+        Optional<Slot> nearestEmptySlot = slots.get(vehicleType).stream().filter(Slot::isEmpty).findFirst();
+        return nearestEmptySlot.orElseThrow(
+                () -> new ParkingLotException(ErrorCodes.PARKING_FULL));
     }
 }

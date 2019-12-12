@@ -2,6 +2,7 @@ package com.gojek.parkinglot.utils;
 
 import com.gojek.parkinglot.service.CommandHandler;
 import com.gojek.parkinglot.service.impl.CreateParkingLotCommandHandler;
+import com.gojek.parkinglot.service.impl.ParkCommandHandler;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -16,7 +17,7 @@ public enum CommandSupported {
     UNDEFINED("undefined", 0),
     EXIT("exit", 0),
     CREATE_PARKING_LOT("create_parking_lot", 1, CreateParkingLotCommandHandler.class),
-    PARK("park", 2),
+    PARK("park", 2, ParkCommandHandler.class),
     LEAVE("leave", 1),
     STATUS("status", 0),
     REGISTRATION_NUMBERS_FOR_CARS_WITH_COLOUR("registration_numbers_for_cars_with_colour", 1),
