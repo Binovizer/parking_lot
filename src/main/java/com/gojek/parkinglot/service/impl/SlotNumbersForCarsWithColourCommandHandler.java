@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class SlotNumbersForCarsWithColourCommandHandler implements CommandHandler {
 
-    private static final Logger log = LoggerFactory.getLogger(RegistrationNumbersForCarsWithColourCommandHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(SlotNumbersForCarsWithColourCommandHandler.class);
 
     private static final String DELIMITER = ", ";
 

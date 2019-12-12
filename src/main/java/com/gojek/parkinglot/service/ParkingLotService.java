@@ -62,4 +62,12 @@ public interface ParkingLotService {
      * @return returns the list of slots
      */
     List<Slot> searchSlots(VehicleType vehicleType, String color);
+
+    /**
+     * Searches the vehicle of given registration number in given type
+     * @param registrationNumber the registration number
+     * @param vehicleType the vehicle type
+     * @return returns the slot containing the given type of vehicle with given registration number
+     */
+    Slot search(VehicleType vehicleType, String registrationNumber);
 }

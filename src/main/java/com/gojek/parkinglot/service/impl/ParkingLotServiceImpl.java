@@ -1,6 +1,5 @@
 package com.gojek.parkinglot.service.impl;
 
-import com.gojek.parkinglot.ParkingLotApplication;
 import com.gojek.parkinglot.dto.Slot;
 import com.gojek.parkinglot.dto.Vehicle;
 import com.gojek.parkinglot.dto.VehicleType;
@@ -93,6 +92,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         return filteredVehicles;
     }
 
+    @Override
     public List<Slot> searchSlots(VehicleType vehicleType, String color) {
         List<Slot> slots = this.slots.get(vehicleType);
         List<Slot> filteredSlots = slots.stream()
@@ -101,6 +101,13 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         return filteredSlots;
     }
 
+    @Override
+    public Slot search(VehicleType vehicleType, String registrationNumber) {
+        Optional<Slot> first = slots.get(vehicleType).stream()
+                .filter(slot -> isVehicleWithRegistrationNumberParked(registrationNumber, slot))
+                .findFirst();
+        return first.orElseThrow(() -> new ParkingLotException(ErrorCodes.VEHICLE_NOT_FOUND));
+    }
 
     private void printStatusOfType(VehicleType type) {
         List<Slot> slotsOfType = this.slots.get(type);
@@ -112,5 +119,16 @@ public class ParkingLotServiceImpl implements ParkingLotService {
                 System.out.println(slotPrint);
             }
         });
+    }
+
+    private boolean isVehicleWithRegistrationNumberParked(String registrationNumber, Slot slot) {
+        if(slot.isEmpty()){
+            return false;
+        }
+        Vehicle parkedVehicle = slot.getParkedVehicle();
+        if(Objects.isNull(parkedVehicle)){
+            return false;
+        }
+        return parkedVehicle.getRegistrationNumber().equals(registrationNumber);
     }
 }
