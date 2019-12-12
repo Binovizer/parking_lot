@@ -1,7 +1,8 @@
-package com.gojek.parkinglot;
+package com.gojek.parkinglot.service.impl;
 
 import com.gojek.parkinglot.exception.CommandArgumentsException;
 import com.gojek.parkinglot.exception.CommandNotSupportedException;
+import com.gojek.parkinglot.service.Validator;
 import com.gojek.parkinglot.utils.CommandSupported;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,13 +12,14 @@ import org.slf4j.LoggerFactory;
  *
  * @author Mohd Nadeem
  */
-public class Validator {
+public class CommandValidator implements Validator {
 
-    private static final Logger log = LoggerFactory.getLogger(Processor.class);
+    private static final Logger log = LoggerFactory.getLogger(CommandProcessor.class);
 
     private static final String SPACE = " ";
 
-    public static CommandSupported validate(String commandWithArguments) {
+    @Override
+    public CommandSupported validate(String commandWithArguments) {
         log.info("Validating if given command '{}' is valid and have required parameters.", commandWithArguments);
         String[] commandArray = commandWithArguments.split(SPACE);
         String commandName = commandArray[0];

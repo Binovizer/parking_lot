@@ -1,5 +1,8 @@
 package com.gojek.parkinglot.utils;
 
+import com.gojek.parkinglot.service.CommandHandler;
+import com.gojek.parkinglot.service.impl.CreateParkingLotCommandHandler;
+
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -12,7 +15,7 @@ public enum CommandSupported {
 
     UNDEFINED("undefined", 0),
     EXIT("exit", 0),
-    CREATE_PARKING_LOT("create_parking_lot", 1),
+    CREATE_PARKING_LOT("create_parking_lot", 1, CreateParkingLotCommandHandler.class),
     PARK("park", 2),
     LEAVE("leave", 1),
     STATUS("status", 0),
@@ -22,6 +25,7 @@ public enum CommandSupported {
 
     private String name;
     private int noOfRequiredParameters;
+    private Class<? extends CommandHandler> handlerClass;
 
     public String getName() {
         return name;
@@ -31,9 +35,19 @@ public enum CommandSupported {
         return noOfRequiredParameters;
     }
 
+    public Class<? extends CommandHandler> getHandlerClass() {
+        return handlerClass;
+    }
+
     CommandSupported(String name, int noOfRequiredParameters) {
         this.name = name;
         this.noOfRequiredParameters = noOfRequiredParameters;
+    }
+
+    CommandSupported(String name, int noOfRequiredParameters, Class<? extends CommandHandler> handlerClass) {
+        this.name = name;
+        this.noOfRequiredParameters = noOfRequiredParameters;
+        this.handlerClass = handlerClass;
     }
 
     public static CommandSupported from(String name) {

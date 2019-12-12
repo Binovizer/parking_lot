@@ -1,5 +1,9 @@
 package com.gojek.parkinglot;
 
+import com.gojek.parkinglot.service.Processor;
+import com.gojek.parkinglot.service.Validator;
+import com.gojek.parkinglot.service.impl.CommandProcessor;
+import com.gojek.parkinglot.service.impl.CommandValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +20,9 @@ public class ParkingLotApplication {
 
     public static void main(String[] args) {
         log.info("Arguments passed to program : {}", Arrays.toString(args));
-        Processor.process(args);
+        Validator validator = new CommandValidator();
+        Processor processor = new CommandProcessor(validator);
+        processor.process(args);
     }
 
 }
