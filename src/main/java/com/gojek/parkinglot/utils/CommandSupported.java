@@ -14,7 +14,7 @@ import java.util.Optional;
 public enum CommandSupported {
 
     UNDEFINED("undefined", 0),
-    EXIT("exit", 0),
+    EXIT("exit", 0, ExitCommandHandler.class),
     CREATE_PARKING_LOT("create_parking_lot", 1, CreateParkingLotCommandHandler.class),
     PARK("park", 2, ParkCommandHandler.class),
     LEAVE("leave", 1, LeaveCommandHandler.class),
