@@ -4,6 +4,7 @@ import com.gojek.parkinglot.exception.CommandArgumentsException;
 import com.gojek.parkinglot.exception.CommandNotSupportedException;
 import com.gojek.parkinglot.exception.ParkingLotException;
 import com.gojek.parkinglot.service.CommandHandler;
+import com.gojek.parkinglot.service.ParkingLotService;
 import com.gojek.parkinglot.service.Processor;
 import com.gojek.parkinglot.service.Validator;
 import com.gojek.parkinglot.utils.CommandSupported;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
@@ -69,8 +71,9 @@ public class CommandProcessor implements Processor {
         CommandHandler commandHandler;
         Class<? extends CommandHandler> handler = commandSupported.getHandlerClass();
         try {
-            commandHandler = handler.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
+            ParkingLotService parkingLotService = ParkingLotServiceImpl.getInstance();
+            commandHandler = handler.getConstructor(ParkingLotService.class).newInstance(parkingLotService);
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             log.warn("Unable to instantiate the handler for command : {}", commandSupported.getName());
             throw new ParkingLotException(ErrorCodes.HANDLER_NOT_FOUND);
         }
