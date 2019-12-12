@@ -52,7 +52,9 @@ public class CommandProcessor implements Processor {
                 String[] commandWithArguments = commandWithArgumentsString.split(SPACE);
                 String response = commandHandler.execute(commandWithArguments);
                 log.info("Command : {}, Response : {}", commandWithArgumentsString, response);
-                System.out.println(response);
+                if(!response.trim().equalsIgnoreCase("")){
+                    System.out.println(response);
+                }
             } catch (CommandNotSupportedException | CommandArgumentsException | ParkingLotException e){
                 log.warn(e.getMessage());
                 log.warn("Skipping this command.");
