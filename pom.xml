@@ -8,6 +8,20 @@
     <artifactId>parking-lot</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <log4j.version>2.8.2</log4j.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+            <type>pom</type>
+        </dependency>
+
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
