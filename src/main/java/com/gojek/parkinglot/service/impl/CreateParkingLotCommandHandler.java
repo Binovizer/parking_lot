@@ -1,6 +1,5 @@
 package com.gojek.parkinglot.service.impl;
 
-import com.gojek.parkinglot.ParkingLotApplication;
 import com.gojek.parkinglot.service.CommandHandler;
 import com.gojek.parkinglot.service.ParkingLotService;
 import org.slf4j.Logger;
