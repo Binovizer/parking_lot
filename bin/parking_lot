@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-java -jar $DIR/../target/parking-lot-1.0-SNAPSHOT.jar $1
+java -jar $DIR/../target/parking-lot-1.0-SNAPSHOT-jar-with-dependencies.jar $1
