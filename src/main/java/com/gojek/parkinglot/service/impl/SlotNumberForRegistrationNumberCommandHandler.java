@@ -29,7 +29,7 @@ public class SlotNumberForRegistrationNumberCommandHandler implements CommandHan
         String response;
         String registrationNumber = args[1];
         try {
-            Slot slot = parkingLotService.search(VehicleType.CAR, registrationNumber);
+            Slot slot = parkingLotService.searchRegistrationNumber(VehicleType.CAR, registrationNumber);
             response = slot.getId();
         }catch (ParkingLotException e){
             response = "Not found";

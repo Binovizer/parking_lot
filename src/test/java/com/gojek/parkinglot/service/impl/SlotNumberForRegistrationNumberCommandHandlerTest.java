@@ -47,20 +47,20 @@ public class SlotNumberForRegistrationNumberCommandHandlerTest {
 
     @Test
     void executeWithRegistrationNumberFound() {
-        when(parkingLotService.search(any(), anyString())).thenReturn(slot);
+        when(parkingLotService.searchRegistrationNumber(any(), anyString())).thenReturn(slot);
 
         String response = commandHandler.execute(command);
-        verify(parkingLotService).search(any(), anyString());
+        verify(parkingLotService).searchRegistrationNumber(any(), anyString());
         Assertions.assertEquals(SLOT_ID, response);
     }
 
     @Test
     void executeWithRegistrationNumberNotFound() {
-        when(parkingLotService.search(any(), anyString()))
+        when(parkingLotService.searchRegistrationNumber(any(), anyString()))
                 .thenThrow(new ParkingLotException(ErrorCodes.SLOT_NOT_FOUND));
 
         String response = commandHandler.execute(command);
-        verify(parkingLotService).search(any(), anyString());
+        verify(parkingLotService).searchRegistrationNumber(any(), anyString());
         Assertions.assertEquals("Not found", response);
     }
 }

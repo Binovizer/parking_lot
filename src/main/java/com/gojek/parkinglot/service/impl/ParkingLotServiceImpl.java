@@ -37,6 +37,10 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     private Map<VehicleType, List<Slot>> slots;
 
+    public Map<VehicleType, List<Slot>> getSlots() {
+        return slots;
+    }
+
     @Override
     public void createParkingSlots(int noOfCarSlots) {
         log.info("Creating parking slots for vehicles.");
@@ -94,14 +98,13 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     public List<Slot> searchSlots(VehicleType vehicleType, String color) {
         List<Slot> slots = this.slots.get(vehicleType);
         return slots.stream()
-                .filter(slot -> slot.getParkedVehicle().getColor().equalsIgnoreCase(color))
-                .collect(Collectors.toList());
+                .filter(slot -> isVehicleOfColorParkedInSlot(color, slot)).collect(Collectors.toList());
     }
 
     @Override
-    public Slot search(VehicleType vehicleType, String registrationNumber) {
+    public Slot searchRegistrationNumber(VehicleType vehicleType, String registrationNumber) {
         Optional<Slot> first = slots.get(vehicleType).stream()
-                .filter(slot -> isVehicleWithRegistrationNumberParked(registrationNumber, slot))
+                .filter(slot -> isVehicleOfRegistrationNumberParkedInSlot(registrationNumber, slot))
                 .findFirst();
         return first.orElseThrow(() -> new ParkingLotException(ErrorCodes.VEHICLE_NOT_FOUND));
     }
@@ -118,14 +121,23 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         });
     }
 
-    private boolean isVehicleWithRegistrationNumberParked(String registrationNumber, Slot slot) {
+    private boolean isVehicleOfRegistrationNumberParkedInSlot(String registrationNumber, Slot slot) {
+        boolean parked;
         if(slot.isEmpty()){
-            return false;
+            parked = false;
+        } else {
+            parked = slot.getParkedVehicle().getRegistrationNumber().equalsIgnoreCase(registrationNumber);
         }
-        Vehicle parkedVehicle = slot.getParkedVehicle();
-        if(Objects.isNull(parkedVehicle)){
-            return false;
+        return parked;
+    }
+
+    private boolean isVehicleOfColorParkedInSlot(String color, Slot slot) {
+        boolean parked;
+        if(slot.isEmpty()){
+            parked = false;
+        } else {
+            parked = slot.getParkedVehicle().getColor().equalsIgnoreCase(color);
         }
-        return parkedVehicle.getRegistrationNumber().equals(registrationNumber);
+        return parked;
     }
 }
