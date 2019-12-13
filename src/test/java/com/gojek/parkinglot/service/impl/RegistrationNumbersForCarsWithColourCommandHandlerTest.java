@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,6 @@ import static org.mockito.Mockito.when;
 class RegistrationNumbersForCarsWithColourCommandHandlerTest {
 
     private static final String[] command = {"registration_numbers_for_cars_with_colour", "White"};
-    private static final String[] command2 = {"registration_numbers_for_cars_with_colour", "Magenta"};
 
     private static final String DELIMITER = ", ";
 
@@ -60,14 +60,11 @@ class RegistrationNumbersForCarsWithColourCommandHandlerTest {
 
     @Test
     void executeWithColorNotFound() {
-        when(parkingLotService.searchVehicle(any(), anyString())).thenReturn(vehicles);
+        when(parkingLotService.searchVehicle(any(), anyString())).thenReturn(Collections.emptyList());
 
-        String response = commandHandler.execute(command2);
+        String response = commandHandler.execute(command);
         verify(parkingLotService).searchVehicle(any(), anyString());
-        String expectedResponse = vehicles.stream()
-                .map(Vehicle::getRegistrationNumber)
-                .collect(Collectors.joining(DELIMITER));
-        Assertions.assertEquals(expectedResponse, response);
+        Assertions.assertEquals("Not found", response);
     }
 
     private void populateVehiclesList() {
