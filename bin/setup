@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+DIR=$( cd "./../../ParkingLot")
+mvn clean package
