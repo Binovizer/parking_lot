@@ -22,16 +22,16 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     private static final Logger log = LoggerFactory.getLogger(ParkingLotServiceImpl.class);
 
     // Singleton Pattern
-    private static ParkingLotServiceImpl parkingLot = null;
+    private static ParkingLotServiceImpl parkingLotService;
 
     private ParkingLotServiceImpl() {
     }
 
     public static ParkingLotServiceImpl getInstance() {
-        if (parkingLot == null) {
-            parkingLot = new ParkingLotServiceImpl();
+        if (parkingLotService == null) {
+            parkingLotService = new ParkingLotServiceImpl();
         }
-        return parkingLot;
+        return parkingLotService;
     }
 
 

@@ -1,5 +1,6 @@
 package com.gojek.parkinglot.service.impl;
 
+import com.gojek.parkinglot.service.CommandHandler;
 import com.gojek.parkinglot.service.ParkingLotService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,21 +24,21 @@ class CreateParkingLotCommandHandlerTest {
     private String[] command = {"create_parking_lot", "6"};
     private String[] invalidCommand = {"create_parking_lot", "Six"};
 
-    private CreateParkingLotCommandHandler createParkingLotCommandHandler;
+    private CommandHandler commandHandler;
 
     @Mock
     private ParkingLotService parkingLotService;
 
     @BeforeEach
     void setUp() {
-        createParkingLotCommandHandler = new CreateParkingLotCommandHandler(parkingLotService);
+        commandHandler = new CreateParkingLotCommandHandler(parkingLotService);
     }
 
     @Test
     void executeWithCorrectArguments() {
         doNothing().when(parkingLotService).createParkingSlots(6);
 
-        String response = createParkingLotCommandHandler.execute(command);
+        String response = commandHandler.execute(command);
 
         verify(parkingLotService).createParkingSlots(6);
         Assertions.assertEquals(String.format("Created a parking lot with %s slots", command[1]), response);
@@ -46,6 +47,6 @@ class CreateParkingLotCommandHandlerTest {
     @Test
     void executeWithIncorrectArguments() {
         Assertions.assertThrows(NumberFormatException.class, () ->
-                createParkingLotCommandHandler.execute(invalidCommand));
+                commandHandler.execute(invalidCommand));
     }
 }

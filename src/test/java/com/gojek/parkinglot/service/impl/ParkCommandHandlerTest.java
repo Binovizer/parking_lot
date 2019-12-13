@@ -2,6 +2,7 @@ package com.gojek.parkinglot.service.impl;
 
 import com.gojek.parkinglot.dto.Slot;
 import com.gojek.parkinglot.exception.ParkingLotException;
+import com.gojek.parkinglot.service.CommandHandler;
 import com.gojek.parkinglot.service.ParkingLotService;
 import com.gojek.parkinglot.utils.ErrorCodes;
 import org.junit.jupiter.api.Assertions;
@@ -29,14 +30,14 @@ class ParkCommandHandlerTest {
 
     private Slot slot;
 
-    private ParkCommandHandler parkCommandHandler;
+    private CommandHandler commandHandler;
 
     @Mock
     private ParkingLotService parkingLotService;
 
     @BeforeEach
     void setUp() {
-        parkCommandHandler = new ParkCommandHandler(parkingLotService);
+        commandHandler = new ParkCommandHandler(parkingLotService);
         populateSlot();
     }
 
@@ -44,7 +45,7 @@ class ParkCommandHandlerTest {
     void executeWithCorrectArgumentsParkingAvailable() {
         when(parkingLotService.park(any())).thenReturn(slot);
 
-        String response = parkCommandHandler.execute(command);
+        String response = commandHandler.execute(command);
         verify(parkingLotService).park(any());
         Assertions.assertEquals(String.format("Allocated slot number: %s", SLOT_ID), response);
     }
@@ -53,7 +54,7 @@ class ParkCommandHandlerTest {
     void executeWithCorrectArgumentsParkingFull() {
         when(parkingLotService.park(any())).thenThrow(new ParkingLotException(ErrorCodes.PARKING_FULL));
 
-        String response = parkCommandHandler.execute(command);
+        String response = commandHandler.execute(command);
         verify(parkingLotService).park(any());
         Assertions.assertEquals("Sorry, parking lot is full", response);
     }

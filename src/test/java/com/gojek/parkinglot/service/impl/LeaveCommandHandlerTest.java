@@ -3,6 +3,7 @@ package com.gojek.parkinglot.service.impl;
 import com.gojek.parkinglot.dto.Car;
 import com.gojek.parkinglot.dto.Vehicle;
 import com.gojek.parkinglot.exception.ParkingLotException;
+import com.gojek.parkinglot.service.CommandHandler;
 import com.gojek.parkinglot.service.ParkingLotService;
 import com.gojek.parkinglot.utils.ErrorCodes;
 import org.junit.jupiter.api.Assertions;
@@ -29,7 +30,7 @@ class LeaveCommandHandlerTest {
 
     private static final String[] command = {"leave", "4"};
 
-    private LeaveCommandHandler leaveCommandHandler;
+    private CommandHandler commandHandler;
 
     private Vehicle vehicle;
 
@@ -38,7 +39,7 @@ class LeaveCommandHandlerTest {
 
     @BeforeEach
     void setUp() {
-        leaveCommandHandler = new LeaveCommandHandler(parkingLotService);
+        commandHandler = new LeaveCommandHandler(parkingLotService);
         populateVehicle();
     }
 
@@ -50,7 +51,7 @@ class LeaveCommandHandlerTest {
     void executeWithCorrectSlotId() {
         when(parkingLotService.freeSlot(any(), any())).thenReturn(vehicle);
 
-        String response = leaveCommandHandler.execute(command);
+        String response = commandHandler.execute(command);
         verify(parkingLotService).freeSlot(any(), any());
         Assertions.assertEquals(String.format("Slot number %s is free", command[1]), response);
     }
@@ -59,7 +60,7 @@ class LeaveCommandHandlerTest {
     void executeWithIncorrectSlotId() {
         when(parkingLotService.freeSlot(any(), any())).thenThrow(new ParkingLotException(ErrorCodes.SLOT_NOT_FOUND));
 
-        String response = leaveCommandHandler.execute(command);
+        String response = commandHandler.execute(command);
         verify(parkingLotService).freeSlot(any(), any());
         Assertions.assertEquals("Not found.", response);
     }
