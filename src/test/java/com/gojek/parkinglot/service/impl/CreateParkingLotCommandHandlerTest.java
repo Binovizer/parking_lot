@@ -6,7 +6,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 /**
  * The type CreateParkingLotCommandHandlerTest
@@ -31,7 +35,11 @@ class CreateParkingLotCommandHandlerTest {
 
     @Test
     void executeWithCorrectArguments() {
+        doNothing().when(parkingLotService).createParkingSlots(6);
+
         String response = createParkingLotCommandHandler.execute(command);
+
+        verify(parkingLotService).createParkingSlots(6);
         Assertions.assertEquals(String.format("Created a parking lot with %s slots", command[1]), response);
     }
 

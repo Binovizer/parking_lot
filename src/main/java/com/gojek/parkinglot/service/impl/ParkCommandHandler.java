@@ -1,6 +1,5 @@
 package com.gojek.parkinglot.service.impl;
 
-import com.gojek.parkinglot.ParkingLotApplication;
 import com.gojek.parkinglot.dto.Car;
 import com.gojek.parkinglot.dto.Slot;
 import com.gojek.parkinglot.dto.Vehicle;
