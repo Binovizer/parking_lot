@@ -8,7 +8,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
 
 /**
  * The type StatusCommandHandlerTest
@@ -17,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @ExtendWith(MockitoExtension.class)
 class StatusCommandHandlerTest {
+
+    private static final String[] command = {"status"};
 
     private CommandHandler commandHandler;
 
@@ -30,5 +34,9 @@ class StatusCommandHandlerTest {
 
     @Test
     void execute() {
+        doNothing().when(parkingLotService).printStatus(any());
+
+        commandHandler.execute(command);
+        verify(parkingLotService).printStatus(any());
     }
 }
