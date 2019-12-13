@@ -32,7 +32,7 @@ RSpec.describe 'End To End Suite' do
           "Allocated slot number: 5\n",
           "Allocated slot number: 6\n",
           "Slot number 4 is free\n",
-          "Slot No.    Registration No    Colour\n1           KA-01-HH-1234      White\n2           KA-01-HH-9999      White\n3           KA-01-BB-0001      Black\n5           KA-01-HH-2701      Blue\n6           KA-01-HH-3141      Black\n",
+          "Slot No.\tRegistration No\tColour\n1\tKA-01-HH-1234\tWhite\n2\tKA-01-HH-9999\tWhite\n3\tKA-01-BB-0001\tBlack\n5\tKA-01-HH-2701\tBlue\n6\tKA-01-HH-3141\tBlack\n",
           "Allocated slot number: 4\n",
           "Sorry, parking lot is full\n",
           "KA-01-HH-1234, KA-01-HH-9999, KA-01-P-333\n",

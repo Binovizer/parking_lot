@@ -27,14 +27,8 @@ RSpec.describe 'Parking Lot' do
     run_command(pty, "park KA-01-HH-3141 Black\n")
     run_command(pty, "park KA-01-HH-9999 White\n")
     run_command(pty, "status\n")
-    expect(fetch_stdout(pty)).to end_with(<<-EOTXT
-Slot No.    Registration No    Colour
-1           KA-01-HH-1234      White
-2           KA-01-HH-3141      Black
-3           KA-01-HH-9999      White
-EOTXT
-)
+    expect(fetch_stdout(pty)).to end_with("Slot No.\tRegistration No\tColour\n1\tKA-01-HH-1234\tWhite\n2\tKA-01-HH-3141\tBlack\n3\tKA-01-HH-9999\tWhite\n")
   end
   
-  pending "add more specs as needed"
+#   pending "add more specs as needed"
 end
