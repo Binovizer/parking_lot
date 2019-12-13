@@ -2,20 +2,17 @@ package com.gojek.parkinglot.service.impl;
 
 import com.gojek.parkinglot.exception.CommandArgumentsException;
 import com.gojek.parkinglot.exception.CommandNotSupportedException;
-import com.gojek.parkinglot.service.impl.CommandValidator;
 import com.gojek.parkinglot.utils.CommandSupported;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * The type ValidatorTest
  *
  * @author Mohd Nadeem
  */
-class CommandValidatorTest {
+public class CommandValidatorTest {
 
     private CommandValidator validator;
 

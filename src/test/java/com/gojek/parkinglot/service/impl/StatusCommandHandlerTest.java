@@ -18,7 +18,7 @@ import static org.mockito.Mockito.verify;
  * @author Mohd Nadeem
  */
 @ExtendWith(MockitoExtension.class)
-class StatusCommandHandlerTest {
+public class StatusCommandHandlerTest {
 
     private static final String[] command = {"status"};
 

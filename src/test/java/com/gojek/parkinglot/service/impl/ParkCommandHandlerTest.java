@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
  * @author Mohd Nadeem
  */
 @ExtendWith(MockitoExtension.class)
-class ParkCommandHandlerTest {
+public class ParkCommandHandlerTest {
 
     private static final String SLOT_ID = "1";
 

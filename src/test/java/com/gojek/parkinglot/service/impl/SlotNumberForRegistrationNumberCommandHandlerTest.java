@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
  * @author Mohd Nadeem
  */
 @ExtendWith(MockitoExtension.class)
-class SlotNumberForRegistrationNumberCommandHandlerTest {
+public class SlotNumberForRegistrationNumberCommandHandlerTest {
 
     private static final String[] command = {"slot_number_for_registration_number", "KA-01-HH-3141"};
     private static final String SLOT_ID = "1";

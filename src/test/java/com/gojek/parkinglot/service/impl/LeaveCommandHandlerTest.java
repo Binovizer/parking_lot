@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
  * @author Mohd Nadeem
  */
 @ExtendWith(MockitoExtension.class)
-class LeaveCommandHandlerTest {
+public class LeaveCommandHandlerTest {
 
     private static final String REGISTRATION_NUMBER = "KA-01-HH-1234";
     private static final String COLOR = "White";

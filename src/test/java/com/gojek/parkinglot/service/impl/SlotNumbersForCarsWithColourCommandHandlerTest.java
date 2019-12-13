@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
  * @author Mohd Nadeem
  */
 @ExtendWith(MockitoExtension.class)
-class SlotNumbersForCarsWithColourCommandHandlerTest {
+public class SlotNumbersForCarsWithColourCommandHandlerTest {
 
     private static final String[] command = {"slot_numbers_for_cars_with_colour", "White"};
     private static final String DELIMITER = ", ";

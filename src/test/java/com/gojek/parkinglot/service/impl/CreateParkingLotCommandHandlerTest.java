@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
  * @author Mohd Nadeem
  */
 @ExtendWith(MockitoExtension.class)
-class CreateParkingLotCommandHandlerTest {
+public class CreateParkingLotCommandHandlerTest {
 
     private String[] command = {"create_parking_lot", "6"};
     private String[] invalidCommand = {"create_parking_lot", "Six"};

@@ -27,7 +27,7 @@ import static org.mockito.Mockito.when;
  * @author Mohd Nadeem
  */
 @ExtendWith(MockitoExtension.class)
-class RegistrationNumbersForCarsWithColourCommandHandlerTest {
+public class RegistrationNumbersForCarsWithColourCommandHandlerTest {
 
     private static final String[] command = {"registration_numbers_for_cars_with_colour", "White"};
 
