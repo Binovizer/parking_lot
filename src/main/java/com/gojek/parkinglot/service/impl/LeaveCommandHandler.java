@@ -1,6 +1,5 @@
 package com.gojek.parkinglot.service.impl;
 
-import com.gojek.parkinglot.ParkingLotApplication;
 import com.gojek.parkinglot.dto.VehicleType;
 import com.gojek.parkinglot.exception.ParkingLotException;
 import com.gojek.parkinglot.service.CommandHandler;
@@ -30,7 +29,7 @@ public class LeaveCommandHandler implements CommandHandler {
         String slotId = args[1];
         log.info("Emptying the slot with id : {}", slotId);
         try {
-            parkingLotService.free(VehicleType.CAR, slotId);
+            parkingLotService.freeSlot(VehicleType.CAR, slotId);
             respnose = String.format("Slot number %s is free", slotId);
         } catch (ParkingLotException e){
             log.info("Slot was not found with id : {}", slotId);

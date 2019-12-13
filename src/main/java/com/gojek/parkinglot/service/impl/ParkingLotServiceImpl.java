@@ -67,14 +67,13 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     }
 
     @Override
-    public Vehicle free(VehicleType type, String slotId) {
+    public Vehicle freeSlot(VehicleType type, String slotId) {
         log.info("Emptying the given slot with id");
         List<Slot> slots = this.slots.get(type);
         Optional<Slot> optionalSlot =
                 slots.stream().filter(slot -> slot.getId().equalsIgnoreCase(slotId)).findFirst();
         Slot slot = optionalSlot.orElseThrow(() -> new ParkingLotException(ErrorCodes.SLOT_NOT_FOUND));
-        Vehicle free = slot.empty();
-        return free;
+        return slot.empty();
     }
 
     @Override
@@ -86,19 +85,17 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     @Override
     public List<Vehicle> searchVehicle(VehicleType vehicleType, String color) {
         List<Slot> filteredSlots = searchSlots(vehicleType, color);
-        List<Vehicle> filteredVehicles = filteredSlots.stream()
+        return filteredSlots.stream()
                 .map(Slot::getParkedVehicle)
                 .collect(Collectors.toList());
-        return filteredVehicles;
     }
 
     @Override
     public List<Slot> searchSlots(VehicleType vehicleType, String color) {
         List<Slot> slots = this.slots.get(vehicleType);
-        List<Slot> filteredSlots = slots.stream()
+        return slots.stream()
                 .filter(slot -> slot.getParkedVehicle().getColor().equalsIgnoreCase(color))
                 .collect(Collectors.toList());
-        return filteredSlots;
     }
 
     @Override
