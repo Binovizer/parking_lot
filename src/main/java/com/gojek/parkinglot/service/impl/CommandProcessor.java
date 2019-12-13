@@ -50,7 +50,9 @@ public class CommandProcessor implements Processor {
                 log.info("Command is valid.");
                 CommandHandler commandHandler = getCommandHandler(commandSupported);
                 String[] commandWithArguments = commandWithArgumentsString.split(SPACE);
+
                 String response = commandHandler.execute(commandWithArguments);
+
                 log.info("Command : {}, Response : {}", commandWithArgumentsString, response);
                 if(!response.trim().equalsIgnoreCase("")){
                     System.out.println(response);
