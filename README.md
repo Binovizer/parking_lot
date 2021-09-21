@@ -61,7 +61,7 @@ $ ./parking_lot /some/dummy/path/file_input.txt
 
 ## Versioning
 
-We use [Github](http://semver.org/) for versioning. 
+We use [Github](https://github.com/) for versioning.
 
 ## Authors
 
