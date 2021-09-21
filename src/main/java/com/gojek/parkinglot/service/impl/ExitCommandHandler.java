@@ -14,7 +14,7 @@ public class ExitCommandHandler implements CommandHandler {
 
     private static final Logger log = LoggerFactory.getLogger(ExitCommandHandler.class);
 
-    private ParkingLotService parkingLotService;
+    private final ParkingLotService parkingLotService;
 
     public ExitCommandHandler(ParkingLotService parkingLotService) {
         this.parkingLotService = parkingLotService;

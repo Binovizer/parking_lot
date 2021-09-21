@@ -31,7 +31,7 @@ public class CommandProcessor implements Processor {
 
     private static final String SPACE = " ";
 
-    private Validator validator;
+    private final Validator validator;
 
     public CommandProcessor(Validator validator) {
         this.validator = validator;

@@ -16,7 +16,7 @@ public class LeaveCommandHandler implements CommandHandler {
 
     private static final Logger log = LoggerFactory.getLogger(LeaveCommandHandler.class);
 
-    private ParkingLotService parkingLotService;
+    private final ParkingLotService parkingLotService;
 
     public LeaveCommandHandler(ParkingLotService parkingLotService) {
         this.parkingLotService = parkingLotService;
@@ -25,15 +25,15 @@ public class LeaveCommandHandler implements CommandHandler {
     @Override
     public String execute(String[] args) {
         log.info("Executing '{}' command.", args[0]);
-        String respnose = "Not found.";
+        String response = "Not found.";
         String slotId = args[1];
         log.info("Emptying the slot with id : {}", slotId);
         try {
             parkingLotService.freeSlot(VehicleType.CAR, slotId);
-            respnose = String.format("Slot number %s is free", slotId);
+            response = String.format("Slot number %s is free", slotId);
         } catch (ParkingLotException e){
             log.info("Slot was not found with id : {}", slotId);
         }
-        return respnose;
+        return response;
     }
 }

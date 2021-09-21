@@ -9,7 +9,7 @@ public enum VehicleType {
 
     CAR("car"), BIKE("bike");
 
-    private String name;
+    private final String name;
 
     VehicleType(String name) {
         this.name = name;

@@ -9,9 +9,13 @@ import com.gojek.parkinglot.utils.ErrorCodes;
  */
 public class ParkingLotException extends RuntimeException {
 
-    private ErrorCodes errorCodes;
+    private final ErrorCodes errorCodes;
 
     public ParkingLotException(ErrorCodes errorCodes) {
         this.errorCodes = errorCodes;
+    }
+
+    public ErrorCodes getErrorCodes() {
+        return errorCodes;
     }
 }

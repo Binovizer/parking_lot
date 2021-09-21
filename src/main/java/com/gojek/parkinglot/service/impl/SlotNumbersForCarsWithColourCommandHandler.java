@@ -22,7 +22,7 @@ public class SlotNumbersForCarsWithColourCommandHandler implements CommandHandle
 
     private static final String DELIMITER = ", ";
 
-    private ParkingLotService parkingLotService;
+    private final ParkingLotService parkingLotService;
 
     public SlotNumbersForCarsWithColourCommandHandler(ParkingLotService parkingLotService) {
         this.parkingLotService = parkingLotService;

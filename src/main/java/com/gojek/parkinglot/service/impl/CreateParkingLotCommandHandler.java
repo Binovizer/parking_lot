@@ -14,7 +14,7 @@ public class CreateParkingLotCommandHandler implements CommandHandler {
 
     private static final Logger log = LoggerFactory.getLogger(CreateParkingLotCommandHandler.class);
 
-    private ParkingLotService parkingLotService;
+    private final ParkingLotService parkingLotService;
 
     public CreateParkingLotCommandHandler(ParkingLotService parkingLotService) {
         this.parkingLotService = parkingLotService;

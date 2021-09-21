@@ -26,8 +26,8 @@ public enum CommandSupported {
     SLOT_NUMBER_FOR_REGISTRATION_NUMBER("slot_number_for_registration_number",
             1, SlotNumberForRegistrationNumberCommandHandler.class);
 
-    private String name;
-    private int noOfRequiredParameters;
+    private final String name;
+    private final int noOfRequiredParameters;
     private Class<? extends CommandHandler> handlerClass;
 
     public String getName() {

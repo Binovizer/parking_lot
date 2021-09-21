@@ -26,7 +26,7 @@ public class ParkCommandHandlerTest {
 
     private static final String SLOT_ID = "1";
 
-    private String[] command = {"park", "KA-01-HH-1234", "White"};
+    private final String[] command = {"park", "KA-01-HH-1234", "White"};
 
     private Slot slot;
 

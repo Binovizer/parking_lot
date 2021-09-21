@@ -45,7 +45,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     public void createParkingSlots(int noOfCarSlots) {
         log.info("Creating parking slots for vehicles.");
         slots = new HashMap<>();
-        VehicleType vehicleType = VehicleType.CAR; // Currently only one vehicle type is supported
+        VehicleType vehicleType = VehicleType.CAR; // Currently, only one vehicle type is supported
         List<Slot> typeOfSlots = new ArrayList<>();
         for (int i = 1; i <= noOfCarSlots; i++) {
             Slot slot = new Slot(String.valueOf(i));

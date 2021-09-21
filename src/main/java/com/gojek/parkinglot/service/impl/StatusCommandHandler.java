@@ -15,7 +15,7 @@ public class StatusCommandHandler implements CommandHandler {
 
     private static final Logger log = LoggerFactory.getLogger(StatusCommandHandler.class);
 
-    private ParkingLotService parkingLotService;
+    private final ParkingLotService parkingLotService;
 
     public StatusCommandHandler(ParkingLotService parkingLotService) {
         this.parkingLotService = parkingLotService;

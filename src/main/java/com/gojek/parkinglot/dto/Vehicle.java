@@ -7,9 +7,9 @@ package com.gojek.parkinglot.dto;
  */
 public abstract class Vehicle {
 
-    private String registrationNumber;
-    private String color;
-    private VehicleType type;
+    private final String registrationNumber;
+    private final String color;
+    private final VehicleType type;
 
     public Vehicle(String registrationNumber, String color, VehicleType type) {
         this.registrationNumber = registrationNumber;

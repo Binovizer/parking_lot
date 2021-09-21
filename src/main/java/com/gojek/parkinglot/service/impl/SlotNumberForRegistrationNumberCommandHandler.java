@@ -17,7 +17,7 @@ public class SlotNumberForRegistrationNumberCommandHandler implements CommandHan
 
     private static final Logger log = LoggerFactory.getLogger(SlotNumberForRegistrationNumberCommandHandler.class);
 
-    private ParkingLotService parkingLotService;
+    private final ParkingLotService parkingLotService;
 
     public SlotNumberForRegistrationNumberCommandHandler(ParkingLotService parkingLotService) {
         this.parkingLotService = parkingLotService;

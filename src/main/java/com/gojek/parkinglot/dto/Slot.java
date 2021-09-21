@@ -10,7 +10,7 @@ import com.gojek.parkinglot.utils.ErrorCodes;
  */
 public class Slot {
 
-    private String id;
+    private final String id;
     private Vehicle parkedVehicle;
 
     public String getId() {

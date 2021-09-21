@@ -22,7 +22,7 @@ public class RegistrationNumbersForCarsWithColourCommandHandler implements Comma
 
     private static final String DELIMITER = ", ";
 
-    private ParkingLotService parkingLotService;
+    private final ParkingLotService parkingLotService;
 
     public RegistrationNumbersForCarsWithColourCommandHandler(ParkingLotService parkingLotService) {
         this.parkingLotService = parkingLotService;
