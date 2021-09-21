@@ -65,4 +65,4 @@ We use [Github](https://github.com/) for versioning.
 
 ## Authors
 
-* **Mohd Nadeem**
+* **[Mohd Nadeem](https://github.com/Binovizer)**
