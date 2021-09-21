@@ -5,6 +5,7 @@ import com.gojek.parkinglot.dto.Vehicle;
 import com.gojek.parkinglot.dto.VehicleType;
 import com.gojek.parkinglot.exception.ParkingLotException;
 import com.gojek.parkinglot.service.ParkingLotService;
+import com.gojek.parkinglot.service.SlotPickStrategy;
 import com.gojek.parkinglot.utils.ErrorCodes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,8 @@ import java.util.stream.Collectors;
 public class ParkingLotServiceImpl implements ParkingLotService {
 
     private static final Logger log = LoggerFactory.getLogger(ParkingLotServiceImpl.class);
+
+    private SlotPickStrategy slotPickStrategy = new NearestEmptySlotPickStrategy(this);
 
     // Singleton Pattern
     private static ParkingLotServiceImpl parkingLotService;
@@ -139,5 +142,9 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             parked = slot.getParkedVehicle().getColor().equalsIgnoreCase(color);
         }
         return parked;
+    }
+
+    public void setSlotPickStrategy(SlotPickStrategy slotPickStrategy) {
+        this.slotPickStrategy = slotPickStrategy;
     }
 }
